@@ -1,0 +1,3 @@
+stemcell_criteria:
+  os: ubuntu-xenial
+  version: "621.0"

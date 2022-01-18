@@ -1,0 +1,12 @@
+---
+slug: crhntr-hello
+release_source:
+- type: github
+  org: crhntr
+  github_token: $(variable "github_token")
+- type: bosh.io
+releases:
+  - name: hello-release
+    git_repository:
+      https://github.com/crhntr/hello-world
+  - name: bpm
