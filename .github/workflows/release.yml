@@ -13,11 +13,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Parse Tag Name
+        id: vars
+        run: echo ::set-output name=tag_name::${GITHUB_REF#refs/*/}
+
       - name: Bake Tile
         env:
           KILN_VERSION: 0.68.3
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TILE_VERSION: ${{ github.event.inputs.version }}
+          TILE_VERSION: ${{ steps.vars.outputs.tag }}
         run: |          
           cd "${GITHUB_WORKSPACE}" || exit 1cd "${GITHUB_WORKSPACE}" || exit 1
           
@@ -31,9 +35,8 @@ jobs:
           echo "${TILE_VERSION}" >> version
 
           kiln fetch --variable github_token="${GITHUB_TOKEN}"
-          kiln validate \
-            --variable github_token="${GITHUB_TOKEN}"
-          kiln bake --version="${TILE_VERSION}"
+          kiln validate
+          kiln bake
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
