@@ -4,6 +4,7 @@ release_sources:
   - type: github
     org: crhntr
     github_token: $(variable "github_token")
+  - type: bosh.io
 releases:
   - name: bpm
   - name: hello-release

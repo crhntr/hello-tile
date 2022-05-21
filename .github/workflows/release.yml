@@ -18,9 +18,7 @@ jobs:
           KILN_VERSION: 0.68.3
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TILE_VERSION: ${{ github.event.inputs.version }}
-        run: |
-          set -euo pipefail
-          
+        run: |          
           cd "${GITHUB_WORKSPACE}" || exit 1cd "${GITHUB_WORKSPACE}" || exit 1
           
           # Install Kiln
@@ -29,8 +27,6 @@ jobs:
           chmod +x kiln
           mv kiln /usr/local/bin/
           echo "Kiln version: $(kiln version)"
-
-          mkdir -p releases
 
           kiln fetch --variable github_token="${GITHUB_TOKEN}"
           kiln validate
