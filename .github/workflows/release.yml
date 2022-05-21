@@ -33,7 +33,7 @@ jobs:
           kiln fetch --variable github_token="${GITHUB_TOKEN}"
           kiln validate \
             --variable github_token="${GITHUB_TOKEN}"
-          kiln bake
+          kiln bake --version="${TILE_VERSION}"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
