@@ -1,5 +1,0 @@
-name: hello-duniya
-release: hello-duniya-release
-manifest: |
-  job-properties:
-    port: 8080

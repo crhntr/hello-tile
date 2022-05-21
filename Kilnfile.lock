@@ -1,3 +1,14 @@
+releases:
+  - name: bpm
+    sha1: 86675f90d66f7018c57f4ae0312f1b3834dd58c9
+    version: 1.1.18
+    remote_source: bosh.io
+    remote_path: https://bosh.io/d/github.com/cloudfoundry/bpm-release?v=1.1.18
+  - name: hello-release
+    sha1: 9d36488370ac3c930af58fa0eb9a7be567adf20e
+    version: v0.1.0
+    remote_source: crhntr
+    remote_path: https://github.com/crhntr/hello-release/releases/download/v0.1.0/hello-release-v0.1.0.tgz
 stemcell_criteria:
   os: ubuntu-xenial
   version: "621.0"
