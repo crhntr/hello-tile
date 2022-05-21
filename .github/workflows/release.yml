@@ -28,11 +28,12 @@ jobs:
           mv kiln /usr/local/bin/
           echo "Kiln version: $(kiln version)"
 
+          echo "${TILE_VERSION}" >> version
+
           kiln fetch --variable github_token="${GITHUB_TOKEN}"
           kiln validate \
-            --variable github_token="${GITHUB_TOKEN}" \
-            --version="${TILE_VERSION}"
-          kiln bake --version="${TILE_VERSION}"
+            --variable github_token="${GITHUB_TOKEN}"
+          kiln bake
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
