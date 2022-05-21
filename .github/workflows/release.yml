@@ -29,7 +29,9 @@ jobs:
           echo "Kiln version: $(kiln version)"
 
           kiln fetch --variable github_token="${GITHUB_TOKEN}"
-          kiln validate --variable github_token="${GITHUB_TOKEN}"
+          kiln validate \
+            --variable github_token="${GITHUB_TOKEN}" \
+            --version="${TILE_VERSION}"
           kiln bake --version="${TILE_VERSION}"
 
       - name: Create GitHub Release
