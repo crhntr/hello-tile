@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install Kiln
+      - name: Bake Tile
         env:
           KILN_VERSION: 0.68.3
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
