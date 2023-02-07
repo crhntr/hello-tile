@@ -23,12 +23,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TILE_VERSION: ${{ steps.vars.outputs.tag_name }}
         run: |
-          set -euo pipefail
+          set -euxo pipefail
           cd "${GITHUB_WORKSPACE}" || exit 1
           
           # Install Kiln
-          curl --fail -L "https://github.com/pivotal-cf/kiln/releases/download/v${KILN_VERSION}/kiln-linux-amd64-${KILN_VERSION}" \
-            --output kiln
+          curl --fail -L "https://github.com/pivotal-cf/kiln/releases/download/v${KILN_VERSION}/kiln-linux-amd64-${KILN_VERSION}" --output kiln
           chmod +x kiln
           mv kiln /usr/local/bin/
 
@@ -37,8 +36,10 @@ jobs:
           
           echo "${TILE_VERSION}" > version
 
+          set +x
           kiln fetch --variable github_token="${GITHUB_TOKEN}"
           kiln validate --variable github_token="${GITHUB_TOKEN}"
+          set -x
           kiln bake
 
       - name: Create GitHub Release
