@@ -19,7 +19,7 @@ jobs:
 
       - name: Bake Tile
         env:
-          KILN_VERSION: 0.68.3
+          KILN_VERSION: v0.77.2
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TILE_VERSION: ${{ steps.vars.outputs.tag_name }}
         run: |          
