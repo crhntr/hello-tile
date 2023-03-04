@@ -34,7 +34,7 @@ jobs:
           echo "Kiln Version: $(kiln version)"
           echo "Tile Version: ${TILE_VERSION}"
           
-          echo "${TILE_VERSION}" > version
+          printf "%s" "${TILE_VERSION/#v}" > version
 
           set +x
           kiln fetch --variable github_token="${GITHUB_TOKEN}"
