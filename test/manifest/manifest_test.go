@@ -45,6 +45,7 @@ func TestManifest(t *testing.T) {
 }
 
 func createProductConfig(t *testing.T) planitest.ProductConfig {
+	t.Helper()
 	m := generateMetadataFile(t)
 
 	// writes the tile metadata to a file
@@ -79,6 +80,7 @@ func createProductConfig(t *testing.T) planitest.ProductConfig {
 }
 
 func generateMetadataFile(t *testing.T) []byte {
+	t.Helper()
 	// generates tile metadata using kiln
 	_, err := exec.LookPath("kiln")
 	require.NoError(t, err, "kiln must be installed to run the tests https://github.com/pivotal-cf/kiln")
