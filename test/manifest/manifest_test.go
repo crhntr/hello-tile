@@ -35,6 +35,7 @@ func TestManifest(t *testing.T) {
 
 				helloServerManifest, err := manifest.FindInstanceGroupJob("hello-server", "hello-server")
 				require.NoError(t, err)
+
 				value, err := helloServerManifest.Property("port")
 				require.NoError(t, err)
 
