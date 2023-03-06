@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-type Config map[string]any
+type ProductConfiguration = map[string]any
 
 func TestManifest(t *testing.T) {
 	t.Setenv("RENDERER", "ops-manifest")
@@ -23,11 +23,11 @@ func TestManifest(t *testing.T) {
 	t.Run("port", func(t *testing.T) {
 		for _, tt := range []struct {
 			Name          string
-			Config        Config
+			Config        ProductConfiguration
 			ExpectedValue int
 		}{
-			{Name: "Default", Config: Config{}, ExpectedValue: 8080},
-			{Name: "Not Default", Config: Config{".properties.port": 8888}, ExpectedValue: 8888},
+			{Name: "Default", Config: ProductConfiguration{}, ExpectedValue: 8080},
+			{Name: "Not Default", Config: ProductConfiguration{".properties.port": 8888}, ExpectedValue: 8888},
 		} {
 			t.Run(tt.Name, func(t *testing.T) {
 				manifest, err := product.RenderManifest(tt.Config)
