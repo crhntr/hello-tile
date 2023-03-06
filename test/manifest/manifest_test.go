@@ -24,13 +24,19 @@ func TestManifest(t *testing.T) {
 		for _, tt := range []struct {
 			Name          string
 			Config        ProductConfiguration
+			ExpectFailure bool
 			ExpectedValue int
 		}{
 			{Name: "Default", Config: ProductConfiguration{}, ExpectedValue: 8080},
 			{Name: "Not Default", Config: ProductConfiguration{".properties.port": 8888}, ExpectedValue: 8888},
+			{Name: "Invalid Port", Config: ProductConfiguration{".properties.port": -1}, ExpectFailure: true},
 		} {
 			t.Run(tt.Name, func(t *testing.T) {
 				manifest, err := product.RenderManifest(tt.Config)
+				if tt.ExpectFailure {
+					require.Error(t, err)
+					return
+				}
 				require.NoError(t, err)
 
 				helloServerManifest, err := manifest.FindInstanceGroupJob("hello-server", "hello-server")
