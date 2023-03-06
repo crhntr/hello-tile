@@ -12,8 +12,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-type ProductConfiguration = map[string]any
-
 func TestManifest(t *testing.T) {
 	t.Setenv("RENDERER", "ops-manifest")
 
@@ -21,6 +19,8 @@ func TestManifest(t *testing.T) {
 	require.NoError(t, err)
 
 	t.Run("port", func(t *testing.T) {
+		type ProductConfiguration = map[string]any
+
 		for _, tt := range []struct {
 			Name          string
 			Config        ProductConfiguration
