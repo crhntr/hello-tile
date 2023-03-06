@@ -21,10 +21,12 @@ func TestManifest(t *testing.T) {
 	type ProductConfiguration = map[string]any
 
 	for _, tt := range []struct {
-		Name              string
-		Config            ProductConfiguration
-		ExpectFailure     bool
-		ExpectedPortValue int
+		Name string
+
+		Config ProductConfiguration
+
+		ExpectRenderFailure bool
+		ExpectedPortValue   int
 	}{
 		{
 			Name:              "Default Port",
@@ -37,14 +39,14 @@ func TestManifest(t *testing.T) {
 			ExpectedPortValue: 8888,
 		},
 		{
-			Name:          "Invalid Port",
-			Config:        ProductConfiguration{".properties.port": -1},
-			ExpectFailure: true,
+			Name:                "Invalid Port",
+			Config:              ProductConfiguration{".properties.port": -1},
+			ExpectRenderFailure: true,
 		},
 	} {
 		t.Run(tt.Name, func(t *testing.T) {
 			manifest, err := product.RenderManifest(tt.Config)
-			if tt.ExpectFailure {
+			if tt.ExpectRenderFailure {
 				require.Error(t, err)
 				return
 			}
