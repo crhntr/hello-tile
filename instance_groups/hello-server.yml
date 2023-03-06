@@ -4,8 +4,8 @@ resource_label: Server
 description: HTTP Server
 
 templates:
-- $( job "hello-server" )
-- $( job "bpm" )
+  - $( job "hello-server" )
+  - $( job "bpm" )
 
 static_ip: 1
 dynamic_ip: 0
@@ -24,34 +24,34 @@ instance_definition:
     max: 1
 
 resource_definitions:
-- name: ram
-  type: integer
-  label: RAM
-  configurable: true
-  default: 1024
-  constraints:
-    min: 1024
+  - name: ram
+    type: integer
+    label: RAM
+    configurable: true
+    default: 1024
+    constraints:
+      min: 1024
 
-- name: ephemeral_disk
-  type: integer
-  label: Ephemeral Disk
-  configurable: true
-  default: 4000
-  constraints:
-    min: 2000
+  - name: ephemeral_disk
+    type: integer
+    label: Ephemeral Disk
+    configurable: true
+    default: 4000
+    constraints:
+      min: 2000
 
-- name: persistent_disk
-  type: integer
-  label: Persistent Disk
-  configurable: false
-  default: 4000
-  constraints:
-    min: 2000
+  - name: persistent_disk
+    type: integer
+    label: Persistent Disk
+    configurable: false
+    default: 4000
+    constraints:
+      min: 2000
 
-- name: cpu
-  type: integer
-  label: CPU
-  configurable: true
-  default: 1
-  constraints:
-    min: 1
+  - name: cpu
+    type: integer
+    label: CPU
+    configurable: true
+    default: 1
+    constraints:
+      min: 1

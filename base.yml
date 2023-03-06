@@ -8,21 +8,27 @@ metadata_version: "2.7.0"
 minimum_version_for_upgrade: 0.1.0
 product_version: $( version )
 provides_product_versions:
-- name: hello
-  version: $( version )
+  - name: hello
+    version: $( version )
 
 rank: 90
 serial: false
 
 releases:
-- $( release "hello-release" )
-- $( release "bpm" )
+  - $( release "hello-release" )
+  - $( release "bpm" )
 
 stemcell_criteria: $( stemcell )
 
 job_types:
-- $( instance_group "hello-server" )
+  - $( instance_group "hello-server" )
 
 runtime_configs: []
-property_blueprints: []
+
+property_blueprints:
+  - name: port
+    type: port
+    configurable: true
+    default: 8080
+
 form_types: []
