@@ -20,7 +20,7 @@ func TestManifest(t *testing.T) {
 
 	type ProductConfiguration = map[string]any
 
-	tests := []struct {
+	for _, tt := range []struct {
 		Name              string
 		Config            ProductConfiguration
 		ExpectFailure     bool
@@ -41,8 +41,7 @@ func TestManifest(t *testing.T) {
 			Config:        ProductConfiguration{".properties.port": -1},
 			ExpectFailure: true,
 		},
-	}
-	for _, tt := range tests {
+	} {
 		t.Run(tt.Name, func(t *testing.T) {
 			manifest, err := product.RenderManifest(tt.Config)
 			if tt.ExpectFailure {
