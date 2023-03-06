@@ -67,7 +67,7 @@ func createProductConfig(t *testing.T) planitest.ProductConfig {
 		closeAndIgnoreError(metadataFile)
 	})
 
-	configFile, err := os.Open("config.yml")
+	configFile, err := os.Open("base_config.yml")
 	require.NoError(t, err)
 	t.Cleanup(func() {
 		closeAndIgnoreError(configFile)
