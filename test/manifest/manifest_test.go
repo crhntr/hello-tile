@@ -18,37 +18,48 @@ func TestManifest(t *testing.T) {
 	product, err := planitest.NewProductService(createProductConfig(t))
 	require.NoError(t, err)
 
-	t.Run("port", func(t *testing.T) {
-		type ProductConfiguration = map[string]any
+	type ProductConfiguration = map[string]any
 
-		for _, tt := range []struct {
-			Name          string
-			Config        ProductConfiguration
-			ExpectFailure bool
-			ExpectedValue int
-		}{
-			{Name: "Default", Config: ProductConfiguration{}, ExpectedValue: 8080},
-			{Name: "Not Default", Config: ProductConfiguration{".properties.port": 8888}, ExpectedValue: 8888},
-			{Name: "Invalid Port", Config: ProductConfiguration{".properties.port": -1}, ExpectFailure: true},
-		} {
-			t.Run(tt.Name, func(t *testing.T) {
-				manifest, err := product.RenderManifest(tt.Config)
-				if tt.ExpectFailure {
-					require.Error(t, err)
-					return
-				}
-				require.NoError(t, err)
+	tests := []struct {
+		Name              string
+		Config            ProductConfiguration
+		ExpectFailure     bool
+		ExpectedPortValue int
+	}{
+		{
+			Name:              "Default Port",
+			Config:            ProductConfiguration{},
+			ExpectedPortValue: 8080,
+		},
+		{
+			Name:              "Configured Port",
+			Config:            ProductConfiguration{".properties.port": 8888},
+			ExpectedPortValue: 8888,
+		},
+		{
+			Name:          "Invalid Port",
+			Config:        ProductConfiguration{".properties.port": -1},
+			ExpectFailure: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.Name, func(t *testing.T) {
+			manifest, err := product.RenderManifest(tt.Config)
+			if tt.ExpectFailure {
+				require.Error(t, err)
+				return
+			}
+			require.NoError(t, err)
 
-				helloServerManifest, err := manifest.FindInstanceGroupJob("hello-server", "hello-server")
-				require.NoError(t, err)
+			helloServerManifest, err := manifest.FindInstanceGroupJob("hello-server", "hello-server")
+			require.NoError(t, err)
 
-				value, err := helloServerManifest.Property("port")
-				require.NoError(t, err)
+			value, err := helloServerManifest.Property("port")
+			require.NoError(t, err)
 
-				require.Equal(t, value, tt.ExpectedValue)
-			})
-		}
-	})
+			require.Equal(t, value, tt.ExpectedPortValue)
+		})
+	}
 }
 
 func createProductConfig(t *testing.T) planitest.ProductConfig {
