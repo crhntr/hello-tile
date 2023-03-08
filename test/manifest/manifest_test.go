@@ -65,7 +65,7 @@ func TestManifest(t *testing.T) {
 
 func createProductConfig(t *testing.T) planitest.ProductConfig {
 	t.Helper()
-	m := generateMetadataFile(t)
+	metadataBytes := generateMetadataBytes(t)
 
 	// writes the tile metadata to a file
 	// this is required because planitest.ProductConfig expects two io.ReadSeeker fields.
@@ -80,7 +80,7 @@ func createProductConfig(t *testing.T) planitest.ProductConfig {
 	t.Cleanup(func() {
 		closeAndIgnoreError(metadataFile)
 	})
-	_, err = metadataFile.Write(m)
+	_, err = metadataFile.Write(metadataBytes)
 	require.NoError(t, err)
 	t.Cleanup(func() {
 		closeAndIgnoreError(metadataFile)
@@ -98,7 +98,7 @@ func createProductConfig(t *testing.T) planitest.ProductConfig {
 	}
 }
 
-func generateMetadataFile(t *testing.T) []byte {
+func generateMetadataBytes(t *testing.T) []byte {
 	t.Helper()
 	// generates tile metadata using kiln
 	_, err := exec.LookPath("kiln")
