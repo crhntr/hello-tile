@@ -40,7 +40,7 @@ jobs:
           kiln fetch --variable github_token="${GITHUB_TOKEN}"
           kiln validate --variable github_token="${GITHUB_TOKEN}"
           set -x
-          kiln bake
+          kiln bake --variables-file variables/hello.yml
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
