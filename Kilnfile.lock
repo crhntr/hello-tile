@@ -11,4 +11,4 @@ releases:
   remote_path: https://github.com/crhntr/hello-release/releases/download/v0.1.5/hello-release-v0.1.5.tgz
 stemcell_criteria:
   os: ubuntu-xenial
-  version: "621.0"
+  version: "621.584"
