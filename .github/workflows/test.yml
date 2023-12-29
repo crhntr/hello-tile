@@ -19,7 +19,7 @@ jobs:
 
       - name: Bake Tile
         env:
-          KILN_VERSION: 0.83.0
+          KILN_VERSION: 0.88.0
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TILE_VERSION: ${{ steps.version.outputs.build_version }}
         run: .github/tasks/bake.sh
