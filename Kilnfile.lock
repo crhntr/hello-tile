@@ -10,5 +10,5 @@ releases:
       remote_source: crhntr
       remote_path: https://github.com/crhntr/hello-release/releases/download/v0.2.3/hello-release-v0.2.3.tgz
 stemcell_criteria:
-    os: ubuntu-xenial
-    version: "621.0"
+    os: ubuntu-jammy
+    version: "1.329"
