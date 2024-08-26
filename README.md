@@ -15,4 +15,4 @@ To run tests,
 - clone the repository
 - fetch a version of kiln that supports test
 - run `go mod vendor`
-- run `kiln test`
+- run `kiln test --manifest`
