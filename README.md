@@ -14,5 +14,5 @@ You can run kiln test; however, Kiln test runs in a container so you need to ven
 To run tests,
 - clone the repository
 - fetch a version of kiln that supports test
-- run `go vendor`
+- run `go mod vendor`
 - run `kiln test`
