@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/pivotal-cf/planitest"
+	"github.com/pivotal-cf/kiln/pkg/planitest"
 	"github.com/stretchr/testify/require"
 )
 
