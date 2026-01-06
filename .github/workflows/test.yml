@@ -14,7 +14,7 @@ jobs:
           echo "build_version=$(cat "${GITHUB_WORKSPACE}/version")-build" >> "${GITHUB_OUTPUT}"
       - name: Bake Tile
         env:
-          KILN_VERSION: 0.88.0
+          KILN_VERSION: 0.109.0
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TILE_VERSION: ${{ steps.version.outputs.build_version }}
         run: .github/tasks/bake.sh
