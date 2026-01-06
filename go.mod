@@ -6,7 +6,7 @@ toolchain go1.23.0
 
 require (
 	github.com/pivotal-cf/kiln v0.94.0
-	github.com/stretchr/testify v1.9.0
+	github.com/stretchr/testify v1.11.1
 )
 
 require (
